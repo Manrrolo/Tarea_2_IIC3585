@@ -1,0 +1,18 @@
+{
+  "name": "rust-image-filters",
+  "type": "module",
+  "collaborators": [
+    "Manrrolo <manuel.sc@uc.cl>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "rust_image_filters_bg.wasm",
+    "rust_image_filters.js",
+    "rust_image_filters.d.ts"
+  ],
+  "main": "rust_image_filters.js",
+  "types": "rust_image_filters.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
