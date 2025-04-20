@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Add viewport for responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor de Imágenes WASM</title>
+    <link rel="icon" href="/icon.png" type="image/png" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <meta name="theme-color" content="#333333" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>Editor de Imágenes con WASM</h1>
+
+      <!-- Selector de modo -->
+      <div class="card">
+        <button id="mode-image" class="button primary">Modo Imagen</button>
+        <button id="mode-video" class="button">Modo Video</button>
+      </div>
+
+      <!-- Controles de IMAGEN -->
+      <div id="image-controls" class="controls card">
+        <label for="image-input" class="file-label button">
+          Cargar Imagen
+          <input type="file" id="image-input" accept="image/*" />
+        </label>
+
+        <select id="filter-select">
+          <option value="grayscale">Grayscale</option>
+          <option value="invert">Invert</option>
+          <!-- Add more filters here if needed -->
+        </select>
+
+        <button id="apply-filter" class="button primary">Aplicar Filtro</button>
+        <button id="load-last" class="button">Cargar Última</button>
+      </div>
+
+      <!-- Resultados de imagen -->
+      <div class="image-container" id="image-view">
+        <div class="image-box card">
+          <h3>Original</h3>
+          <img id="original" alt="Imagen original" />
+        </div>
+        <div class="image-box card">
+          <h3>Procesada</h3>
+          <!-- Add a container for the image and loader -->
+          <div class="processed-image-wrapper">
+            <img id="filtered" alt="Imagen procesada" />
+            <!-- Loading Indicator -->
+            <div id="loading-indicator" class="loading-overlay" style="display: none;">
+              <div class="spinner"></div>
+              <span>Procesando...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles de VIDEO -->
+      <div id="video-controls" class="card" style="display: none;">
+        <label for="video-input" class="file-label button">
+          Cargar Video
+          <input type="file" id="video-input" accept="video/*" style="display: none;" />
+        </label>
+        <label for="threshold-range">Umbral: <span id="threshold-value">15</span></label>
+        <input type="range" id="threshold-range" min="0" max="100" value="15" />
+        <button id="restart-button" class="button">Reiniciar Análisis</button>
+      </div>
+
+      <!-- Vista de video y canvas lado a lado -->
+      <div class="video-container" id="video-view" style="display: none;">
+        <div class="image-box card">
+          <h3>Video Original</h3>
+          <video id="video" controls></video>
+        </div>
+        <div class="image-box card">
+          <h3>Canvas Procesado</h3>
+          <canvas id="canvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,339 @@
+:root {
+  --primary-color: #646cff;
+  --primary-hover: #535bf2;
+  --background-color-light: #ffffff;
+  --text-color-light: #213547;
+  --background-color-dark: #242424;
+  --text-color-dark: rgba(255, 255, 255, 0.87);
+  --card-background-dark: #1e1e1e;
+  --card-border-dark: #333;
+  --card-background-light: #f9f9f9;
+  --card-border-light: #ddd;
+  --button-bg-dark: #3a3a3a;
+  --button-hover-dark: #4a4a4a;
+  --button-bg-light: #f0f0f0;
+  --button-hover-light: #e0e0e0;
+  --spinner-color: var(--primary-color);
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light & Dark Mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--text-color-light);
+    background-color: var(--background-color-light);
+  }
+  .card {
+    background-color: var(--card-background-light);
+    border: 1px solid var(--card-border-light);
+  }
+  .button {
+     background-color: var(--button-bg-light);
+     color: var(--text-color-light);
+  }
+   .button:hover {
+     background-color: var(--button-hover-light);
+     border-color: var(--primary-hover);
+   }
+   .button.primary {
+     background-color: var(--primary-color);
+     color: white;
+   }
+   .button.primary:hover {
+     background-color: var(--primary-hover);
+   }
+   select {
+     background-color: var(--button-bg-light);
+     color: var(--text-color-light);
+     border: 1px solid var(--card-border-light);
+   }
+   .loading-overlay span {
+     color: var(--text-color-light);
+   }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: var(--text-color-dark);
+    background-color: var(--background-color-dark);
+  }
+   .card {
+    background-color: var(--card-background-dark);
+    border: 1px solid var(--card-border-dark);
+  }
+  .button {
+     background-color: var(--button-bg-dark);
+     color: var(--text-color-dark);
+  }
+  .button:hover {
+     background-color: var(--button-hover-dark);
+     border-color: var(--primary-hover);
+   }
+   .button.primary {
+     background-color: var(--primary-color);
+     color: white;
+   }
+   .button.primary:hover {
+     background-color: var(--primary-hover);
+   }
+   select {
+     background-color: var(--button-bg-dark);
+     color: var(--text-color-dark);
+     border: 1px solid var(--card-border-dark);
+   }
+    .loading-overlay span {
+     color: var(--text-color-dark);
+   }
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align top */
+  min-height: 100vh;
+  padding: 2rem 1rem; /* Add padding */
+  box-sizing: border-box; /* Include padding in width/height */
+}
+
+#app {
+  max-width: 1280px;
+  width: 100%; /* Take available width */
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* General Button Styles */
+.button, select {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.7em 1.4em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+  text-align: center;
+}
+
+.button:focus,
+.button:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+  outline-color: var(--primary-color);
+}
+
+/* Specific button for file input */
+.file-label {
+  display: inline-block; /* Align with other buttons */
+}
+#image-input {
+  display: none; /* Hide the actual file input */
+}
+
+select {
+  min-width: 150px; /* Give select some width */
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column; /* Stack on small screens */
+  align-items: center; /* Center items when stacked */
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .image-container {
+    flex-direction: row; /* Side-by-side on larger screens */
+    align-items: flex-start; /* Align tops */
+    justify-content: center;
+  }
+}
+
+.image-box {
+  flex: 1;
+  max-width: 500px; /* Limit max width */
+  width: 100%; /* Take full width on small screens */
+}
+
+.image-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* Remove fixed border, rely on card border */
+  display: block; /* Remove extra space below img */
+  margin: 0 auto; /* Center image if container is wider */
+  min-height: 100px; /* Prevent collapse when no image */
+  background-color: rgba(128, 128, 128, 0.1); /* Placeholder bg */
+}
+
+/* Processed Image Wrapper & Loading */
+.processed-image-wrapper {
+  position: relative; /* Needed for absolute positioning of overlay */
+  min-height: 100px; /* Match image min-height */
+  display: flex; /* Center content */
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px; /* Match image border-radius */
+  z-index: 10;
+}
+
+.loading-overlay span {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* CSS Spinner */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Light border */
+  border-left-color: var(--spinner-color); /* Color of the spinning part */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* NUEVO: Estilos para el contenedor de video y canvas */
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .video-container {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+.video-container .image-box {
+  flex: 1;
+  max-width: 500px;
+  width: 100%;
+}
+
+.video-container video,
+.video-container canvas {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--card-border-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .video-container video,
+  .video-container canvas {
+    border: 2px solid var(--card-border-dark);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+video,
+canvas {
+  max-width: 100%;
+  width: 100%;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.05); /* fondo gris claro por defecto */
+}
+
+/* Alineación vertical del canvas con bordes */
+canvas {
+  border: 2px solid var(--card-border-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  canvas {
+    border: 2px solid var(--card-border-dark);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Botones de modo (imagen/video) */
+#mode-image,
+#mode-video {
+  margin: 1rem 0.5rem;
+}
+
+/* Control de video separado si quieres ocultar botón por defecto */
+#video-input[type='file'] {
+  display: none;
+}
+
+/* Contenedor adicional para inputs de video si se desea agrupar */
+#video-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
