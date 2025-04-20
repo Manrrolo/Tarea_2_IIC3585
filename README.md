@@ -86,7 +86,7 @@ npm run preview
 
 ## 🌐 Despliegue en Render
 
-Este proyecto está listo para ser desplegado como sitio estático en [Render](https://render.com).
+Este proyecto está listo para ser desplegado como sitio estático en [Render](https://tarea-2-iic3585.onrender.com).
 
 ### Configuración:
 
